@@ -1,0 +1,65 @@
+  {% extends 'base.html' %}
+  {% load static %}
+
+  {% block left %}
+
+  <form method='POST' action=''>
+    {% csrf_token %}
+
+    {% for field in form %}
+      <label for "basic-url">{{field.name}}</label>
+      <div class="input-group mb-1">
+        {{field}}
+      </div>
+    {% endfor %}
+    <button type='submit'>登録</button>
+  </form>
+
+  {% endblock %}
+
+  {% block content %}
+
+    <link  rel="stylesheet" href="{% static 'task/label_list.css' %}" type="text/css">
+
+    <div class="row">
+    {% for label in label_todo %}
+      <div class="col col-12">
+        <div class="card1 card">
+          <div class="card-body">
+            <p class="label-name">{{label.label}}</p>
+            <!-- なんでtitleじゃダメなのか。 →modelを変えたらmakemigrateが必要-->
+
+            <div class="button">
+                <button type="button" class="btn-center btn btn-primary">編集</button>
+                <form action="detail/{{label.id}}/" method="">
+                  <button type="submit" class="btn-center btn btn-danger">削除</button>
+                </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+  {% endfor %}
+    </div>
+
+  {% endblock %}
+
+  {% block right %}
+  <div class="row">
+  {% for label in label_done %}
+  <div class="col col-12">
+    <div class="card2 card">
+      <div class="card-body">
+        <p class="label-name">{{label.label}}</p>
+        <form action="status/{{label.id}}/" method="PUT">
+          <button type="submit" class="btn-return btn btn-primary">戻す</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+  </div>
+  {% endblock %}
+
+</body>
+</html>

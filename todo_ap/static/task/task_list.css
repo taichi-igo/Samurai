@@ -1,0 +1,46 @@
+.all{
+    overflow: scroll;
+}
+.card{
+  background-color: blue;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.left-container{
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  height: 100%;
+  width: 250px;
+  background-color: yellow;
+  z-index: 1;
+  padding-top: 80px;
+  padding-left: 15px;
+  padding-right: 15px;
+
+}
+
+.navbar{
+  z-index: 2;
+}
+
+.content{
+  padding-left: 270px;
+  padding-right: 320px;
+
+}
+
+.right-container{
+  position: fixed;
+  top: 0px;
+  right: 0px;
+  height: 100%;
+  width: 300px;
+  background-color: yellow;
+  z-index: 1;
+  padding-top: 80px;
+  padding-left: 15px;
+  padding-right: 15px;
+
+}

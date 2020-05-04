@@ -1,0 +1,62 @@
+  {% extends 'base.html' %}
+  {% load static %}
+
+  {% block left %}
+
+  <form method='POST' action='/'>
+    {% csrf_token %}
+
+    {% for field in form %}
+      <label for "basic-url">{{field.name}}</label>
+      <div class="input-group mb-3">
+        {{field}}
+      </div>
+    {% endfor %}
+    <button type='submit'>登録</button>
+  </form>
+
+  {% endblock %}
+
+  {% block content %}
+
+  <link  rel="stylesheet" href="{% static 'task/task_list.css' %}" type="text/css">
+    <div class="row">
+    {% for task in tasks_todo %}
+    <div class="col col-12 col-sm-6 col-md-4 col-lg-4">
+      <div class="card">
+        <div class="card-body">
+          <p>{{task.title}}</p>
+          <p>2020/05/12 まで</p>
+          <form action="tasks/status/{{task.id}}/" method="PUT">
+            <button type="submit" class="btn btn-primary">完了</button>
+          </form>
+          <form action="tasks/{{task.id}}/" method="delete">
+            <button type="submit" class="btn btn-danger">削除</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+  {% endfor %}
+    </div>
+  {% endblock %}
+
+  {% block right %}
+  <div class="row">
+  {% for task in tasks_done %}
+  <div class="col col-12">
+    <div class="card">
+      <div class="card-body">
+        <p>{{task.title}}</p>
+        <p>2020/05/12 まで</p>
+        <form action="tasks/status/{{task.id}}/" method="PUT">
+          <button type="submit" class="btn btn-primary">戻す</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+  </div>
+  {% endblock %}
+</body>
+</html>
