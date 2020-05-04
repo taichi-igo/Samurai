@@ -11,3 +11,4 @@ def coffee(ice = 'アイス', **kwargs) :
         print(kwargs[a])
 
 coffee(suger = '砂糖　少なめ', milk = 'ミルク　多め', ice = 'ホット')
+
